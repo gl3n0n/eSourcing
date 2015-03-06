@@ -1,0 +1,9 @@
+VendorId,VendorName,VendorCode,Accredited,VendorEmail,MobileNo,VendorAddress,VendorAddress1,VendorAddress2,VendorAddress3,Classification,AccredDate,ContactPerson,SalesPersonTelNo,VendorCategory,VendorSubCategory,Syskey,TelephoneNo,Fax,Extension,BranchTelephoneNo,BranchFax,BranchExtension,VatRegNo,TIN,POBox,TermsofPayment,SpecialTerms,MinOrderValue,PostalCode,OwnershipFilipino,OwnershipOther,OrgTypeID,Specialization,SoleSupplier1,SoleSupplier2,KeyPersonnel,KpPosition,ISOStandard,PCABClass,IsBlackListed,Vendor_Code,SLA_SIR_Date,SLA_Date_Approved,Accreditation_Duration,Accreditation_From,Accreditation_To,Perf_Evaluation_Date,Perf_Evaluation_Rate,Perf_Evaluation_Service,Composite_Rating_SIR_Date,Composite_Rating_Rate,Maximum_Exposure_SIR_Date,Maximum_Exposure_Amount,Enrollment_Date,IR_Date,IR_Number,IR_Description,Issue_Status
+1993,,,,testvendor1@testcompany.com,,"Sample Street, Sample Barangay, Sample City",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,1,,1,1,
+1994,,,,testvendor2@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1995,,,,testvendor3@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1996,,,,testvendor4@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1997,,,,testvendor5@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1998,,,,testvendor6@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1999,,,,testvendor7@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+2000,,,,testvendor8@testcompany.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

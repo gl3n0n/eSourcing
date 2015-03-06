@@ -1,0 +1,9 @@
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/web/images/ads/myglobe.jpg</ImageUrl>
+    <NavigateUrl>http://www.myglobe.com.ph</NavigateUrl>
+    <AlternateText>MyGlobe Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+</Advertisements>

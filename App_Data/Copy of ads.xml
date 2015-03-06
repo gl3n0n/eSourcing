@@ -1,0 +1,44 @@
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/web/images/ads/myglobe.jpg</ImageUrl>
+    <NavigateUrl>http://www.myglobe.com.ph</NavigateUrl>
+    <AlternateText>MyGlobe Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/web/images/ads/globesolutions.gif</ImageUrl>
+    <NavigateUrl>http://www.globesolutions.com.ph</NavigateUrl>
+    <AlternateText>GlobeSolutions Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/web/images/ads/globecorpsite.gif</ImageUrl>
+    <NavigateUrl>http://www1.globe.com.ph/</NavigateUrl>
+    <AlternateText>Globe CorpSite Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/web/images/ads/globeplatinum.gif</ImageUrl>
+    <NavigateUrl>http://www.globeplatinum.com.ph/</NavigateUrl>
+    <AlternateText>Globe Platinum Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/web/images/ads/touchmobile.gif</ImageUrl>
+    <NavigateUrl>http://www.touchmobile.com.ph/</NavigateUrl>
+    <AlternateText>Touch Mobile Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/web/images/ads/innove.gif</ImageUrl>
+    <NavigateUrl>http://www.innove.com.ph/</NavigateUrl>
+    <AlternateText>Innove Home Page</AlternateText>
+    <Keyword></Keyword>
+    <Impressions></Impressions>
+  </Ad>  
+</Advertisements>

@@ -1,0 +1,475 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createnewrfi.aspx.cs" Inherits="web_buyerscreens_createnewrfi" EnableEventValidation="false" MaintainScrollPositionOnPostback="true" %>
+
+<%@ Register Src="../usercontrol/commentlist.ascx" TagName="commentlist" TagPrefix="uc1" %>
+<%@ Register Assembly="Calendar" Namespace="CalendarControl" TagPrefix="cc1" %>
+<%@ Register TagPrefix="EBid" TagName="LeftNav" Src="~/WEB/usercontrol/Buyer/LeftNav.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="TopNavRfi" Src="~/WEB/usercontrol/Buyer/TopNavRfi.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="TopNav2" Src="~/WEB/usercontrol/Buyer/TopNav2.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="GlobalLinksNav" Src="~/web/usercontrol/GlobalLinksNav.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="Footer" Src="~/web/usercontrol/Footer.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="CommentBox" Src="~/web/usercontrol/CommentBox.ascx" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title id = "PageTitle" runat="server"></title>
+    <meta http-equiv="Content-Language" content="en-us" />
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> 
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="../css/style_buyer.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../include/util.js"></script>
+	<script type="text/javascript" src="../include/events.js"></script>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../include/generalJSFunctions.js"></script>
+	<script type="text/javascript">
+    <!--
+	function ShowPHPConversion() 
+	{
+	    var cb = document.getElementById("ddlCurrency");
+	    var tbPhp = document.getElementById("txtPHPCost");
+
+	    if (cb != null) 
+        {
+	        var start = cb.value.substring(0, 3);
+	        if (start != "PHP") 
+            {
+	            tbPhp.style.visibility = 'visible';
+	        }
+	        else 
+            {
+	            tbPhp.style.visibility = 'hidden';
+	        }
+	        ComputePHPConversion();
+	    }
+	}
+
+	function ComputePHPConversion() 
+	{
+	    var cb = document.getElementById("ddlCurrency");
+	    var tbPhp = document.getElementById("txtPHPCost");
+	    var tbTotal = document.getElementById("txtTotalEventPrice");
+	    var arr;
+	    if ((cb) && (tbPhp)) 
+	    {
+	        arr = cb.value.split(":");
+	        var v1 = tbTotal.value;
+	        var v2 = arr[1];
+	        tbPhp.value = AddComma(roundOff(removeCommas(v1) * removeCommas(v2), 2));
+	        tbPhp.value += " PHP";
+	    }
+	} 
+	//-->
+    </script>
+</head>
+<body onload="ShowPHPConversion();">
+    <form id="frmRfi" runat="server">
+    <div align="left">
+        <table border = "0" cellpadding = "0" cellspacing = "0" width="100%" id="page">
+            <tr height="137px">
+				<td valign="top">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							<td>
+								<div align="left" id="masthead">
+									<EBid:GlobalLinksNav runat="server" ID="GlobalLinksNav" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<EBid:TopNavRfi runat="server" ID="TopNavRfi" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<EBid:TopNav2 runat="server" ID="TopNav2" />
+							</td>
+						</tr>
+					</table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border = "0" cellpadding = "0" cellspacing = "0" width="100%" height="100%">
+                        <tr>
+                            <td id = "relatedInfo" style="width: 250px">
+                                <h2>Bids</h2>
+							    <div align="left">
+									<EBid:LeftNav runat="server" ID="LeftNav" />
+								</div>
+                                <h2> Comments </h2>
+                                <div>
+                                    <uc1:commentlist ID="Commentlist1" runat="server" />
+                                </div>
+                                <br />
+                            </td>
+                            <td id="content">
+                                <table border = "0" cellpadding = "0" cellspacing = "0" width = "100%">
+                                    <tr>
+                                        <td>
+                                            <h1>
+                                                <br />
+                                                Create New RFI
+                                            </h1>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#relatedInfo').hide();
+                                    });
+                                </script>
+                                            <p>
+											    Click <b>"Submit"</b> to submit the RFI for approval.
+										    </p>
+                                        <p><a href="javascript:void(0)" onclick="$('#relatedInfo').toggle()">Show/Hide Left Panel</a><asp:Label ID="lblMessage" runat="server" Font-Size="11px" ForeColor="red"></asp:Label></p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="itemDetails">
+                                        <tr>
+                                            <th colspan="2">
+                                                &nbsp;RFI Event</th>
+                                        </tr>
+                                        <tr>
+										    <td width="130px" style="padding-top: 9px;">
+											    Reference No.:</td>
+										    <td class="value" style="padding-top: 9px; padding-left: 8px;">
+                                            <asp:Label ID="lblRefNo" runat="server" Text="NONE" ForeColor="Gray"></asp:Label>
+                                            <%--    <asp:TextBox runat="server" ID="txtRefNo" Width="350px" MaxLength="200"></asp:TextBox>
+											    <asp:RequiredFieldValidator ID="rfvRefNo" runat="server" ErrorMessage="*" ControlToValidate="txtRefNo" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>--%>    
+                                            </td>
+									    </tr>
+                                        <tr>
+										    <td width="130px" style="padding-top: 9px;">
+											    Description:</td>
+										    <td class="evenCells">
+											    <asp:TextBox runat="server" ID="txtItemDesc" Width="350px" MaxLength="200"></asp:TextBox>
+											    <asp:RequiredFieldValidator ID="rfvItemDescription" runat="server" ErrorMessage="*" ControlToValidate="txtItemDesc" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+										    </td>
+									    </tr>
+                                        <tr>
+										    <td style="padding-top: 9px;">
+											    Requestor:</td>
+										    <td class="value" style="height: 20px">
+											    <asp:TextBox runat="server" ID="txtRequestor" Width="250px" MaxLength="100"></asp:TextBox>
+											    <asp:RequiredFieldValidator ID="rfvRequestor" runat="server" ErrorMessage="*" ControlToValidate="txtRequestor" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+										    </td>
+									    </tr>
+                                        <tr>
+										    <td style="padding-top: 9px;">
+											    Company:</td>
+										    <td class="evenCells">
+											    <asp:DropDownList runat="server" ID="ddlCompany" Width="250px" DataSourceID="dsCompanies" DataTextField="Company" DataValueField="CompanyId" AutoPostBack="True" OnDataBound="ddlCompany_DataBound">
+											    </asp:DropDownList>
+											    <asp:SqlDataSource ID="dsCompanies" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="s3p_EBid_GetCompanies" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+											    <asp:RequiredFieldValidator ID="rfvCompany" runat="server" ErrorMessage="*" ControlToValidate="ddlCompany" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+										    </td>
+									    </tr>
+                                        <tr>
+											<td style="padding-top: 9px;">
+												Group/Department/Section:</td>
+											<td class="value">
+												<asp:DropDownList runat="server" ID="ddlGroupDeptSec" Width="350px" DataSourceID="dsGroups" DataTextField="GroupDepartment" DataValueField="GroupDeptSecId">
+												</asp:DropDownList>
+												<asp:SqlDataSource ID="dsGroups" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetAllGroupsAndDepartments" SelectCommandType="StoredProcedure">
+													<SelectParameters>
+														<asp:ControlParameter ControlID="ddlCompany" DefaultValue=" " Name="CompanyId" PropertyName="SelectedValue" />
+													</SelectParameters>
+												</asp:SqlDataSource>
+												<asp:RequiredFieldValidator ID="rfvGroupDeptSec" runat="server" ErrorMessage="*" ControlToValidate="ddlGroupDeptSec" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+											</td>
+										</tr>
+                                        <tr>
+										    <td style="padding-top: 9px;">
+											    Category:</td>
+										    <td class="evenCells">
+											    <asp:DropDownList runat="server" ID="ddlCategory" Width="250px" DataSourceID="dsCategories" DataTextField="CategoryName" DataValueField="CategoryId" AutoPostBack="True" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"
+												    OnDataBound="ddlCategory_DataBound">
+											    </asp:DropDownList><asp:SqlDataSource ID="dsCategories" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="s3p_EBid_GetAllProductCategory" SelectCommandType="StoredProcedure">
+											    </asp:SqlDataSource>
+											    <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ErrorMessage="*" ControlToValidate="ddlCategory" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+										    </td>
+									    </tr>
+                                        <tr>
+										    <td style="padding-top: 9px;">
+											    Sub Category:</td>
+										    <td class="value">
+											    <asp:DropDownList runat="server" ID="ddlSubCategory" Width="250px" DataSourceID="dsSubCategories" DataTextField="SubCategoryName" DataValueField="SubCategoryId" AutoPostBack="true" OnDataBound="ddlSubCategory_DataBound">
+											    </asp:DropDownList>
+											    <asp:SqlDataSource ID="dsSubCategories" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="s3p_EBid_GetAllSubCategories" SelectCommandType="StoredProcedure"
+												    FilterExpression="CategoryId = '{0}'">
+												    <FilterParameters>
+													    <asp:ControlParameter ControlID="ddlCategory" DefaultValue=" " Name="CategoryId" PropertyName="SelectedValue" />
+												    </FilterParameters>
+											    </asp:SqlDataSource>
+										    </td>
+									    </tr>
+                                        <tr>
+											<td style="padding-top: 9px;">
+												RFI Submission Deadline:</td>
+											<td class="evenCells">
+												<cc1:JSCalendar ID="clndrDeadline" runat="server" ImageURL="../../calendar/img.gif" EnableViewState="true" ScriptsBasePath="../../calendar/" DateFormat="MM/dd/yyyy" Width="178px" ReadOnly="false" MaxLength="10"
+													TabIndex="-1"></cc1:JSCalendar>
+												&nbsp;<asp:Label ID="lblExDate5" runat="server" Text="eg. 01/31/2007" ForeColor="red" Font-Size="10px" /><br />
+												&nbsp;<asp:TextBox ID="txtDeadlineHH" runat="server" MaxLength="2" Width="40px">00</asp:TextBox>
+												:
+												<asp:TextBox ID="txtDeadlineMM" runat="server" MaxLength="2" Width="40px">00</asp:TextBox>
+												:
+												<asp:TextBox ID="txtDeadlineSS" runat="server" MaxLength="2" Width="40px">00</asp:TextBox>&nbsp;<asp:DropDownList ID="ddlDeadline" runat="server">
+													<asp:ListItem Value="AM">AM</asp:ListItem>
+													<asp:ListItem Value="PM">PM</asp:ListItem>
+												</asp:DropDownList></td>
+										</tr>
+                                        <tr>
+										    <td style="padding-top: 9px;">
+											    Deliver To:</td>
+										    <td class="value" style="height: 30px">
+											    <asp:TextBox runat="server" ID="txtDeliverTo" Width="250px" MaxLength="100"></asp:TextBox>
+											    <asp:RequiredFieldValidator ID="rfvDeliverTo" runat="server" ErrorMessage="*" ControlToValidate="txtDeliverTo" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+										    </td>
+									    </tr>
+									    <tr>
+										    <td style="padding-top: 9px;">
+											    Incoterm:</td>
+										    <td class="evenCells">
+											    <asp:DropDownList runat="server" ID="ddlIncoterm" Width="250px" DataSourceID="dsIncoterm" DataTextField="Incoterm" DataValueField="Id">
+											    </asp:DropDownList>
+											    <asp:SqlDataSource ID="dsIncoterm" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="s3p_EBid_GetIncoterm1" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+										    </td>
+									    </tr>
+									    <tr>
+										    <td style="padding-top: 9px;">
+											    Currency:</td>
+										    <td class="value">
+											    <asp:DropDownList runat="server" ID="ddlCurrency" Width="250px" DataSourceID="dsCurrencies" DataTextField="Currency" DataValueField="IdRate" OnDataBound="ddlCurrency_DataBound">
+											    </asp:DropDownList>
+											    <asp:SqlDataSource ID="dsCurrencies" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetCurrencies" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+										    </td>
+									    </tr>
+									    <tr>
+										    <td style="padding-top: 9px;">
+											    Total Event Cost:</td>
+										    <td class="value">
+											    <asp:TextBox runat="server" ID="txtTotalEventPrice" Width="300px" ReadOnly="false" TabIndex="-1" BorderStyle="None" Font-Size="14px" Font-Bold="true" ForeColor="Black" onkeypress="return false;" onkeydown="return false;"
+												    onkeyup="return false;" Style="cursor: default; padding-top: 3px;">0.00</asp:TextBox>
+                                                <asp:TextBox ID="txtPHPCost" runat="server" BorderStyle="None" Font-Bold="true" Font-Size="14px" ForeColor="Red" onkeydown="return false;" onkeypress="return false;" onkeyup="return false;" ReadOnly="false"
+																			Style="cursor: default; padding-top: 3px" TabIndex="-1" Width="300px" Text="0.00 PHP"></asp:TextBox></td>
+									    </tr>
+                                        </table>
+                                        <p>
+                                        <asp:SqlDataSource ID="dsEventDetails" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetRFIEventDetails" SelectCommandType="StoredProcedure">
+										    <SelectParameters>
+											    <asp:SessionParameter Name="RfiRefNo" SessionField="RfiRefNo" Type="Int32" />
+										    </SelectParameters>
+									    </asp:SqlDataSource>
+                                        <asp:SqlDataSource ID="dsItemDetails" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetRFIItemDetails" SelectCommandType="StoredProcedure">
+        									<SelectParameters>
+										        <asp:SessionParameter Name="RfiRefNo" SessionField="RfiRefNo" Type="Int32" />
+									        </SelectParameters>
+								        </asp:SqlDataSource>
+								        <asp:SqlDataSource ID="dsAttachments" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetRFIEventFileAttachments" SelectCommandType="StoredProcedure">
+									             <SelectParameters>
+										    <asp:SessionParameter Name="RfiRefNo" SessionField="RfiRefNo" Type="Int32" />
+									        </SelectParameters>
+								        </asp:SqlDataSource>
+								        <asp:SqlDataSource ID="dsParticipants" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_RFIGetSuppliers" SelectCommandType="StoredProcedure">
+									        <SelectParameters>
+                                                <asp:SessionParameter Name="RfiRefNo" SessionField="RfiRefNo" Type="String" />
+											</SelectParameters>
+										</asp:SqlDataSource>
+                                        <asp:SqlDataSource ID="dsComments" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_QueryRFIItemsComments" SelectCommandType="StoredProcedure">
+											<SelectParameters>
+												<asp:SessionParameter Name="refNo" SessionField="RfiRefNo" Type="String" />
+												<asp:SessionParameter Name="userId" SessionField="UserId" Type="String" />
+											</SelectParameters>
+										</asp:SqlDataSource>
+                                        <asp:GridView ID = "gvRfiItems" runat = "server" CssClass = "itemDetails_1" AutoGenerateColumns="false" ShowFooter="true" OnDataBound="gvRfiItems_DataBound" OnRowCommand="gvRfiItems_RowCommand">
+                                            <SelectedRowStyle BackColor="#50A4D1" />
+											<Columns>
+												<asp:TemplateField HeaderText="&#160;RFI Items">
+													<ItemStyle CssClass="valueGridItem" Width="100%" />
+													<HeaderStyle CssClass="itemDetails_th" />
+													<ItemTemplate>
+														<table id="tblRfiItem" runat="server" border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial; font-size: 11px; border-bottom-width: 0;" visible='<%# (Eval("IsEmpty").ToString() == "1" ? true : false) %>'>
+															<tr>
+																<td width="50%">
+																	&nbsp;<asp:Label ID="Label1" runat="server" Text='<%# Bind("Item", "Item: <b>{0}</b>")%>'></asp:Label><br />
+																	&nbsp;<asp:Label ID="Label2" runat="server" Text='<%# Bind("Description", "Description: <b>{0}</b>")%>'></asp:Label><br />
+																	&nbsp;<asp:Label ID="Label3" runat="server" Text='<%# Bind("DeliveryDate", "Delivery Date: <b>{0:D}</b>")%>'></asp:Label><br />
+																</td>
+																<td width="50%">
+																	&nbsp;<asp:Label ID="Label4" runat="server" Text='<%# Bind("Quantity", "Quantity: <b>{0}</b>")%>'></asp:Label>
+																	<asp:Label ID="Label5" runat="server" Text='<%# Bind("UnitOfMeasure", " <b>{0}</b>")%>'></asp:Label><br />
+																	&nbsp;<asp:Label ID="Label6" runat="server" Text='<%# Bind("UnitPrice", "Estimated Unit Price: <b>{0:F2}</b>")%>'></asp:Label><br />
+																	&nbsp;<asp:Label ID="Label7" runat="server" Text='<%# Bind("EstimatedTotal", "Total Estimated Price: <b>{0:#,##0.00}</b>")%>'></asp:Label><br />
+																</td>
+															</tr>
+															<tr>
+																<td colspan="2" style="padding-bottom: 5px;">
+																	&nbsp;&nbsp;<asp:LinkButton ID="lnkEditItem" runat="server" CommandName="EditItem" CommandArgument='<%# Bind("ID")%>' CausesValidation="false">Edit</asp:LinkButton>
+																	&nbsp;<asp:LinkButton ID="lnkRemove" runat="server" CommandName="Remove" CommandArgument='<%# Bind("ID")%>' CausesValidation="false">Remove</asp:LinkButton>
+																</td>
+															</tr>
+														</table>
+													</ItemTemplate>
+													<FooterTemplate>
+														<table cellpadding="0" cellspacing="0" width="100%" class="itemDetails_1" style="font-family: Arial; font-size: 11px; border-bottom-width: 0;">
+															<tr>
+																<td>
+																	<span style="width: 75px;">&nbsp;Item</span>
+																	<asp:TextBox runat="server" ID="txtItem" Width="250"></asp:TextBox>
+																	<a href="javascript://" id="lnkSelectProduct" runat="server" style="height: 20px; vertical-align: bottom;"  >Select</a>
+																	<asp:HiddenField ID="hdnSKU" runat="server" />
+																	<asp:HiddenField ID="hdnID" runat="server" />
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 75px;">&nbsp;Description</span>
+																	<asp:TextBox runat="server" ID="txtDescription" Width="300"></asp:TextBox>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 75px;">&nbsp;Delivery Date</span>
+																	<cc1:JSCalendar ID="clndrDeliveryDate" runat="server" ImageURL="../../calendar/img.gif" EnableViewState="true" ScriptsBasePath="../../calendar/" DateFormat="MM/dd/yyyy" Width="178px" ReadOnly="false" MaxLength="10"
+																		TabIndex="-1"></cc1:JSCalendar>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 110px;">&nbsp;Unit Of Measure</span>:
+																	<asp:TextBox runat="server" ID="txtUnitOfMeasure" Width="100" MaxLength="20"></asp:TextBox>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 110px;">&nbsp;Quantity</span>:
+																	<asp:TextBox runat="server" ID="txtQuantity" Width="100" MaxLength="10">0</asp:TextBox>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 110px;">&nbsp;Estimated Unit Price</span>:
+																	<asp:TextBox runat="server" ID="txtUnitPrice" Width="100" MaxLength="10">0</asp:TextBox>.
+																	<asp:TextBox runat="server" ID="txtUnitPriceCents" Width="20" MaxLength="2">00</asp:TextBox>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	<span style="width: 110px;">&nbsp;Total Estimated Price</span>:
+																	<asp:TextBox runat="server" ID="txtTotalPrice" Width="250px" ReadOnly="false" TabIndex="-1" BorderStyle="None" BackColor="#DBEAF5" Font-Size="14px" Font-Bold="true" ForeColor="red" onkeypress="return false;"
+																		onkeydown="return false;" onkeyup="return false;" Style="cursor: default; padding-top: 3px;">0.00</asp:TextBox>
+																</td>
+															</tr>
+															<tr>
+																<td style="height: 25px; vertical-align: bottom;">
+																	&nbsp;&nbsp;<asp:LinkButton ID="lnkAddItem" runat="server" CommandName="Add" CausesValidation="false">Add To Rfi Items List</asp:LinkButton>
+																	&nbsp;<asp:LinkButton ID="lnkUpdateItem" runat="server" CommandName="UpdateItem" CausesValidation="false" Visible="false">Confirm Update</asp:LinkButton>
+																	&nbsp;<asp:LinkButton ID="lnkCancelUpdate" runat="server" CommandName="CancelUpdate" CausesValidation="false" Visible="false">Cancel Update</asp:LinkButton>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding-left: 10px;">
+																	<p style="color: Red;">
+																		<asp:Literal ID="addItemMsg" runat="server"></asp:Literal>
+																	</p>
+																</td>
+															</tr>
+														</table>
+													</FooterTemplate>
+												</asp:TemplateField>
+											</Columns>
+                                        </asp:GridView>
+                                        </p>
+                                        <p>
+											<asp:GridView ID="gvFileAttachment" runat="server" CssClass="itemDetails_1" AutoGenerateColumns="false" OnRowCommand="gvFileAttachment_RowCommand" ShowFooter="true">
+												<Columns>
+													<asp:TemplateField HeaderText="&nbsp;File Attachment">
+														<ItemStyle CssClass="valueGridItem" Width="100%" />
+														<HeaderStyle CssClass="itemDetails_th" />
+														<ItemTemplate>
+															<asp:Literal ID="litAttach" runat="server" Text="&nbsp;" Visible='<%# IsAttached(Eval("Attached").ToString()) %>' />
+															<asp:Image ID="imgAttach" runat="server" ImageUrl="~/web/images/paperclip.gif" Width="10px" Height="10px" Visible='<%# IsAttached(Eval("Attached").ToString()) %>' />
+															<asp:LinkButton ID="lnkRemoveAttachment" runat="server" CommandName="Remove" CommandArgument='<% #Bind("ID")%>' Visible='<%# IsAttached(Eval("Attached").ToString()) %>' CausesValidation="false">Remove</asp:LinkButton>
+															<asp:Label ID="lblFile" runat="server" CssClass="discount" Text='<% #Bind("Original", ": {0}")%>' Visible='<%# IsAttached(Eval("Attached").ToString()) %>'></asp:Label>
+														</ItemTemplate>
+														<FooterTemplate>
+															<p style="color: Red;">
+																&nbsp;<asp:FileUpload ID="fileUpload" runat="server" Width="330px" /><br />
+																&nbsp;&nbsp;<asp:LinkButton ID="lnkAttach" runat="server" CausesValidation="false" CommandName="Attach">Add To Attachments List</asp:LinkButton>
+																<asp:Literal ID="addAttachmentMsg" runat="server"></asp:Literal>
+															</p>
+														</FooterTemplate>
+													</asp:TemplateField>
+												</Columns>
+											</asp:GridView>
+										</p>
+                                        <p>
+											<asp:HyperLink ID="lnkAddOTLS" runat="server" Visible="False">Add One-Time Supplier/Participant</asp:HyperLink><br /><br />
+											<table cellspacing="0" cellpadding="0" width="100%" border="0" class="itemDetails_1">
+												<tbody>
+													<tr>
+														<th colspan="3" class="itemDetails_th">
+															&nbsp;Suppliers / Participant
+														</th>
+													</tr>
+													<tr>
+														<td align="right">
+															<asp:ListBox Style="width: 550px; height: 200px" ID="lstSupplierA" runat="server" DataSourceID="dsVendors" DataTextField="VendorLabel" DataValueField="VendorId" SelectionMode="Multiple" OnDataBound="lstSupplierA_DataBound">
+															</asp:ListBox>&nbsp;
+														</td>
+														<td align="center" style="width: 22px;">
+															<input style="width: 20px" id="btnSelectAll" type="button" value=">>" runat="server" onserverclick="btnSelectAll_ServerClick" causesvalidation="false" /><br />
+															<input style="width: 20px" id="btnSelectOne" type="button" value=">" runat="server" onserverclick="btnSelectOne_ServerClick" causesvalidation="false" /><br />
+															<input style="width: 20px" id="btnDeselectOne" type="button" value="<" runat="server" onserverclick="btnDeselectOne_ServerClick" causesvalidation="false" /><br />
+															<input style="width: 20px" id="btnDeselectAll" type="button" value="<<" runat="server" onserverclick="btnDeselectAll_ServerClick" causesvalidation="false" />
+														</td>
+														<td align="left">
+															<asp:ListBox Style="width: 250px; height: 200px" ID="lstSupplierB" runat="server" SelectionMode="Multiple" OnDataBound="lstSupplierB_DataBound"></asp:ListBox>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="3">
+															<asp:SqlDataSource ID="dsVendors" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetVendorsInCategoryAndSubCategory" SelectCommandType="StoredProcedure">
+																<SelectParameters>
+																	<asp:ControlParameter ControlID="ddlCategory" DefaultValue=" " Name="CategoryId" PropertyName="SelectedValue" Type="String" />
+																	<asp:ControlParameter ControlID="ddlSubCategory" DefaultValue=" " Name="SubCategoryId" PropertyName="SelectedValue" Type="String" />
+																</SelectParameters>
+															</asp:SqlDataSource>
+															<asp:HiddenField ID="hdnVendor" runat="server" />
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2" style="font:9px Arial" align="center">(Name - Accreditation Status - Composite Rating - Maximum Exposure - Performance Rating)</td>
+													</tr>
+												</tbody>
+											</table>
+										</p>
+                                        <p style="text-align: center;">
+                                            <br />
+                                            Comment<br />
+                                            <asp:TextBox ID="txtComment" runat="server" TextMode = "MultiLine" Width="360px" Height="90px" Font-Names="Arial" MaxLength="999"></asp:TextBox><br />
+                                            <asp:CustomValidator ID="cfvSuppliers" runat="server" Display="Dynamic" OnServerValidate="cfvSuppliers_ServerValidate"></asp:CustomValidator><br />
+                                        </p>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="actions">
+                                            <tr>
+                                                <td>
+                                                    <asp:LinkButton runat="server" ID="btnSubmit" CommandName="Submit" OnClientClick="return confirm('Are you sure you want to submit this new rfi event?');" OnCommand="btn_Command">Submit</asp:LinkButton>
+													<asp:LinkButton runat="server" ID="btnCancel" CommandName="Cancel" CausesValidation="False" OnCommand="btn_Command">Cancel</asp:LinkButton>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        </td>
+                                    </tr>                                        
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td id="footer" height="50px">
+                    <Ebid:Footer runat="server" ID="Footer" />
+                </td>
+        </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>
