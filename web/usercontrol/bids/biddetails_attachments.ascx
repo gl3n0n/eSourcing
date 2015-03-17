@@ -92,7 +92,8 @@
             zip.Save(Response.OutputStream);
         }
 
-        Response.Close();
+        Response.Flush();
+		Response.End();
     }
 
 </script>
