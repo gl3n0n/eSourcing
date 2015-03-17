@@ -150,7 +150,7 @@ string connstring = ConfigurationManager.ConnectionStrings["EBidConnectionString
                                                             <HeaderStyle HorizontalAlign="Center" Width="90px" />
                                                             <ItemTemplate>
                                                                 &nbsp;
-                                                                <asp:LinkButton ID="lnkTenderNo" runat="server" Text='<%# Bind("RfiTenderNo") %>' CommandName="EditTender"
+                                                                <asp:LinkButton ID="lnkTenderNo" runat="server" Text='<%# Bind("RfiTenderNo") %>' CommandName="EditRfiTender"
                                                                     CommandArgument='<%# Bind("RfiDeadline", "{0}") %>' Width="90%" ToolTip="Click to view/edit RFI tender for this RFI item."></asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>

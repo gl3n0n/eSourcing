@@ -109,7 +109,7 @@
                                                                     </table>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
-                                                            <asp:TemplateField HeaderText="Date Submitted" SortExpression="DateApproved">
+                                                            <asp:TemplateField HeaderText="Date Submitted" SortExpression="ApprovedDt">
                                                                 <HeaderStyle HorizontalAlign="Center" />
                                                                 <ItemStyle HorizontalAlign="Center" Width="180px" />
                                                                 <ItemTemplate>

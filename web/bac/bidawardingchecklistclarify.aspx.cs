@@ -374,7 +374,8 @@ public partial class web_bac_bidawardingchecklistclarify : System.Web.UI.Page
             if (oReader["Approver_8"].ToString() == Session["UserId"].ToString()) Session["approverPosition"] = 8;
             if (oReader["Approver_9"].ToString() == Session["UserId"].ToString()) Session["approverPosition"] = 9;
             if (oReader["Approver_10"].ToString() == Session["UserId"].ToString()) Session["approverPosition"] = 10;
-            int approverNext = Convert.ToInt32(Session["approverPosition"].ToString().Trim()) + 1;
+            
+	    int approverNext = Convert.ToInt32(Session["approverPosition"].ToString().Trim()) + 1;
             Session["approverNext"] = (oReader["Approver_" + approverNext].ToString() != "") ? 1 : 0;
         }
         oReader.Close();

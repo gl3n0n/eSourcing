@@ -89,7 +89,7 @@
                                                                                  <asp:HiddenField ID="hdnvendorId" runat="server" Value = '<% Bind("VendorId") %>' />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Buyer" SortExpression="ItemDesc">
+                                                                    <asp:TemplateField HeaderText="Buyer" SortExpression="Buyerfullname">
                                                                         <HeaderStyle HorizontalAlign="Center" />
                                                                         <ItemStyle HorizontalAlign="Center" />
                                                                         <ItemTemplate>

@@ -1,4 +1,4 @@
-<%@ page language="C#" autoeventwireup="true" inherits="web_purchasing_screens_BidEventsforRe_Editing, App_Web_bideventsforre-editing.aspx.9bdd8cc1" theme="default" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="bideventsforre-editing.aspx.cs" Inherits="web_purchasing_screens_BidEventsforRe_Editing" %>
 <%@ Register TagPrefix="EBid" TagName="TopDate" Src="~/WEB/usercontrol/TopDate.ascx" %>
 <%@ Register TagPrefix="EBid" TagName="GlobalLinksNav" Src="~/web/usercontrol/GlobalLinksNav.ascx" %>
 <%@ Register TagPrefix="EBid" TagName="Purchasing_TopNav_Bids" Src="~/web/usercontrol/Purchasing/Purchasing_TopNav_Bids.ascx" %>

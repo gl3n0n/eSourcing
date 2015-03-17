@@ -167,7 +167,7 @@ string connstring = ConfigurationManager.ConnectionStrings["EBidConnectionString
                                                                         CommandName="ViewBidEventDetails" CommandArgument='<%# Bind("BidRefNo") %>'></asp:LinkButton>                                                                     
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Date Withdrawned" SortExpression="DateWithdrawned">
+                                                            <asp:TemplateField HeaderText="Date Withdrawn" SortExpression="DateWithdrawned">
                                                                 <HeaderStyle HorizontalAlign="Center" />
                                                                 <ItemStyle HorizontalAlign="Center" Width="180px" />
                                                                 <ItemTemplate>

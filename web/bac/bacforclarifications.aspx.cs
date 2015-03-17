@@ -57,7 +57,7 @@ public partial class web_bac_bacforclarifications : System.Web.UI.Page
             Session["ClarifiedBy"] = Arr[3].ToString();
             Session["pageDetails"] = "bidawardingchecklistclarify.aspx";
 
-            Server.Transfer("bidawardingchecklistclarify.aspx");
+            Server.Transfer("bidawardingchecklistclarify.aspx");	    
         }
     }
 }

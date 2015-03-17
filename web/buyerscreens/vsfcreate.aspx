@@ -234,9 +234,9 @@
                                                                         <asp:SqlDataSource ID="dsBrands" runat="server" 
                                                                                 ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" 
                                                                                 SelectCommand="s3p_EBid_GetAllProductBrands" SelectCommandType="StoredProcedure"
-                                                                            FilterExpression="SubCategoryId = '{0}'">
+                                                                            FilterExpression="Convert(SubCategoryId, 'System.String') = '{0}'">
                                                                             <FilterParameters>
-                                                                                <asp:ControlParameter ControlID="ddlSubCategory" DefaultValue=" " Name="SubCategoryId" PropertyName="SelectedValue" />
+                                                                                <asp:ControlParameter ControlID="ddlSubCategory" DefaultValue="null" Name="SubCategoryId" PropertyName="SelectedValue" />
                                                                                 <%--<asp:ControlParameter ControlID="ddlSubCategory" DefaultValue=" " Name="SubCategoryId" PropertyName="SelectedValue" />--%>
                                                                             </FilterParameters>
                                                                         </asp:SqlDataSource></td>
@@ -385,7 +385,7 @@
 																</tbody>
 															</table>
                                                             <asp:SqlDataSource ID="dsVendors" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																SelectCommand="SELECT '0' AS VendorId, '--SELECT A VENDOR--' as VendorName, '' as SupplierTypeDesc UNION SELECT t1.VendorId, t1.VendorName + CASE WHEN t3.Status = 1 THEN ' : WITH ISSUE' ELSE '' END AS VendorName, t2.SupplierTypeDesc FROM tblVendors t1 LEFT JOIN rfcSupplierType t2 ON t2.SupplierTypeId = t1.Accredited LEFT JOIN tblIssue t3 ON t3.VendorId = t1.VendorId INNER JOIN tblUsers t4 ON t1.VendorId = t4.UserId WHERE t1.IsBlackListed <> 1 and t4.Status = 1 ORDER BY t1.VendorName" >
+																SelectCommand="SELECT '0' AS VendorId, '--SELECT A VENDOR--' as VendorName, '' as SupplierTypeDesc UNION SELECT t1.VendorId, t1.VendorName + CASE WHEN t3.Status = 1 THEN ' : WITH ISSUE' ELSE '' END AS VendorName, t2.SupplierTypeDesc FROM tblVendors t1 LEFT JOIN rfcSupplierType t2 ON t2.SupplierTypeId = t1.Accredited LEFT JOIN tblIssue t3 ON t3.VendorId = t1.VendorId INNER JOIN tblUsers t4 ON t1.VendorId = t4.UserId WHERE t1.IsBlackListed <> 1 and t4.Status = 1 ORDER BY VendorName" >
 															</asp:SqlDataSource>
                                                             <asp:SqlDataSource ID="dsProductTypeApproval" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
 																SelectCommand="SELECT 'N/A' AS ProductTypeApproval, 'N/A' as ProductTypeApproval UNION 

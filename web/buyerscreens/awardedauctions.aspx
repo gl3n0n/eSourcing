@@ -98,7 +98,7 @@
                                                                                     &nbsp;<asp:LinkButton CommandName="SelectItem" ID="lnkItemDesc" runat="server" Text='<%# Bind("Description") %>' CommandArgument='<%# Bind("AuctionDetailNo") %>'></asp:LinkButton>
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Auction Event" SortExpression="Item">
+                                                                            <asp:TemplateField HeaderText="Auction Event" SortExpression="ItemDesc">
                                                                                 <HeaderStyle HorizontalAlign="Center" />
                                                                                 <ItemTemplate>
                                                                                     &nbsp;<asp:LinkButton CommandName="SelectEvent" ID="lnkevent" runat="server" Text='<%# Eval("Item").ToString() + " - " + Eval("ItemDesc").ToString() %>' CommandArgument='<%# Bind("AuctionRefNo") %>'></asp:LinkButton>
@@ -111,7 +111,7 @@
                                                                                     <asp:Label ID="lblCompany" runat="server" Text='<%# Bind("Company") %>'></asp:Label>                                                                     
                                                                                 </ItemTemplate>
                                                                             </asp:TemplateField>
-                                                                            <asp:TemplateField HeaderText="Winner" SortExpression="Item">
+                                                                            <asp:TemplateField HeaderText="Winner" SortExpression="VendorName">
                                                                                 <HeaderStyle HorizontalAlign="Center" />
                                                                                 <ItemTemplate>
                                                                                     &nbsp;<asp:Label ID="lblWinner" runat="server" Text='<%# Bind("VendorName") %>'></asp:Label>

@@ -31,10 +31,12 @@
                 <HeaderStyle HorizontalAlign="Center" />
 				<ItemStyle HorizontalAlign="Left" />
                 <ItemTemplate>	
-					&nbsp;&nbsp;<asp:CheckBox ID="cbAttachment" runat="server" />
+					&nbsp;&nbsp;
                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/web/images/paperclip.gif" Width="15px" Height="15px" 
                         AlternateText="Click to download" CausesValidation="false" CommandArgument='<%# Bind("FileAttachment") %>' CommandName="Download" />
                     <asp:LinkButton ID="lnkDownload" runat="server" ToolTip="Click to download" CausesValidation="false" Text='<%# Bind("OriginalFileName") %>' CommandArgument='<%# Bind("FileAttachment") %>' CommandName="Download" Width="85%"></asp:LinkButton>
+		    <asp:HiddenField runat="server" ID="txtFileAttachment" value='<%# Bind("FileAttachment") %>'></asp:HiddenField>
+                    <asp:HiddenField runat="server" ID="txtVendorNme" value='<%# Bind("Supplier") %>'></asp:HiddenField>
                 </ItemTemplate>                
 			</asp:TemplateField>
         </Columns>
@@ -46,5 +48,5 @@
         </SelectParameters>
     </asp:SqlDataSource>
         <asp:LinkButton ID="lnkDownloadAll" runat="server" Width="160px" 
-        onclick="lnkDownloadAll_Click">Download All Selected</asp:LinkButton>
+        onclick="lnkDownloadAll_Click">Download All Attachments</asp:LinkButton>
 </div>

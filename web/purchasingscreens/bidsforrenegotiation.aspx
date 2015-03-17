@@ -88,7 +88,7 @@
                                                                             &nbsp;<asp:Label ID="lblBidEvent" runat="server" Text='<%# GetStringValue(Eval("ItemDesc"))   %>' ></asp:Label>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Buyer" SortExpression="ItemDesc">
+                                                                    <asp:TemplateField HeaderText="Buyer" SortExpression="Buyerfullname">
                                                                         <HeaderStyle HorizontalAlign="Center" />
                                                                         <ItemStyle HorizontalAlign="Center" />
                                                                         <ItemTemplate>

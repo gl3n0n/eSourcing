@@ -127,15 +127,15 @@ Globe's e-Sourcing Portal was developed in order to   provide our partners an ef
                                                     &nbsp;Change Password</th>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <p style="padding-left: 5px;">
-                                                        This is your first time to login.
-                                                        <br />
+                                                <td>                                                    
+                                                    <p style="padding-left: 5px;">  
+                                                        <asp:Label runat="server" ID="txtNote3" ForeColor="black" Text="This is your first time to login."></asp:Label>
+                                                        <br />                                                      
                                                         Please change your password.
                                                         <br />
                                                         Password must be:
                                                         <br />
-                                                        &nbsp;» Atleast 7 characters<br />
+                                                        &nbsp;» Atleast 8 characters<br />
                                                         &nbsp;» Contains atleast 1 letter<br />
                                                         &nbsp;» Contains atleast 1 number<br />
                                                         &nbsp;» Contains atleast 1

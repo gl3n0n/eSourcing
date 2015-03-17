@@ -171,7 +171,7 @@
                                                             Bids Tenders</h3>
                                                          <p style="padding-left:15px">
                                                             <a href="bidsforeval.aspx">
-                                                                Recieved Endorsements
+                                                                Received Endorsements
                                                                 <asp:Label runat="server" ID="lblRecievedEndorsements" Text="" />
                                                             </a>
                                                             <br />

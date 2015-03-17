@@ -13,7 +13,8 @@
 .tabs td:hover 
 {
 	background-image: url(../images/TabBGhover.jpg);
-	background-repeat:repeat-x;		
+	background-repeat:repeat-x;
+	width: 100%;
 }
 
 .tabs a 
@@ -22,20 +23,19 @@
 	background-repeat: repeat-x;			
 	color: #ffffff;	
 	font-weight: bold;
-	font-size: 11px;	
-	padding: 12px;	
-	width: 100%;
-	height: 38px;
+	font-size: 12px;	
+	padding: 12px;
+	width: 84%;
+	display: inline-block;	
 }
 
 .tabs a:hover 
 {
 	background-image: url(../images/TabBGhover.jpg);
 	background-repeat:repeat-x;
-	font-size: 11px;
+	font-size: 12px;
 	color: #000000;	
-	width: 100%;	
-	height: 100%;	
+	padding: 7px 12px 7px;
 }
 
 .activeTab 
@@ -54,9 +54,8 @@
 	background-repeat: repeat-x;	
 	color: #ffffff;	
 	font-weight: bold;
-	font-size: 11px;
-	padding: 12px;	
-	height: 100%;
+	font-size: 12px;
+	padding: 12px 0px;
 	background-color: #2682C3;	
 }
 
@@ -72,4 +71,5 @@
 	border-bottom-width: 7px;
 	border-bottom-color: #2682C3;
 	border-bottom-style: solid;
+	width: 100%;
 }

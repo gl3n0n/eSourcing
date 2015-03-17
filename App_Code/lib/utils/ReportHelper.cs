@@ -18,19 +18,19 @@ namespace EBid.lib
 {
     public static class ReportHelper
     {
-        public static void ExportToPDF(Page page, ReportViewer rptViewer, string fileName)
+      public static void ExportToPDF(Page page, ReportViewer rptViewer, string fileName)
         {
             PDFDeviceInfo deviceInfo = new PDFDeviceInfo();
 
             ExportToPDF(page, rptViewer, fileName, deviceInfo);
         }
-
-        public static void ExportToPDF(Page page, ReportViewer rptViewer, string fileName, PDFDeviceInfo deviceInfo)
+   
+       public static void ExportToPDF(Page page, ReportViewer rptViewer, string fileName, PDFDeviceInfo deviceInfo)
         {
             Warning[] warnings;
             string[] streamids;
             string mimeType;
-            string encoding;
+            string encoding; 
             string extension;
 
             byte[] bytes = rptViewer.LocalReport.Render(
@@ -77,7 +77,9 @@ namespace EBid.lib
 
             FileHelper.DownloadFile(page, fInfo.DirectoryName, fInfo.Name, fileName);
         }        
+	
     }
+
         
     public class ExcelDeviceInfo
     {

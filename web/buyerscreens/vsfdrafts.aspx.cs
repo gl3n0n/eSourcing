@@ -29,7 +29,7 @@ public partial class web_buyer_screens_vsfdrafts : System.Web.UI.Page
             Session["VSFId"] = Arr[0].ToString();
             //Session["BuyerBacRefNo"] = Arr[1].ToString();
             Session["pageDetails"] = "vsfdrafts.aspx";
-
+		
             //Server.Transfer("bidawardingchecklist.aspx");
             Server.Transfer("vsfcreate.aspx");
             //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('" + Session["Session_BidRefNoAsBac"] + "')</SCRIPT>");

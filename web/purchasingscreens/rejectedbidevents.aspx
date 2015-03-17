@@ -1,4 +1,5 @@
-<%@ page language="C#" autoeventwireup="true" inherits="web_purchasing_screens_RejectedBidEvents, App_Web_rejectedbidevents.aspx.9bdd8cc1" theme="default" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="rejectedbidevents.aspx.cs" Inherits="web_purchasing_screens_RejectedBidEvents" %>
+
 <%@ Register TagPrefix="EBid" TagName="TopDate" Src="~/WEB/usercontrol/TopDate.ascx" %>
 <%@ Register TagPrefix="EBid" TagName="GlobalLinksNav" Src="~/web/usercontrol/GlobalLinksNav.ascx" %>
 <%@ Register TagPrefix="EBid" TagName="Purchasing_TopNav_Bids" Src="~/web/usercontrol/Purchasing/Purchasing_TopNav_Bids.ascx" %>

@@ -18,7 +18,7 @@
 			<asp:HyperLink ID="lnk5" runat="server" NavigateUrl="~/web/buyerscreens/product.aspx">Products</asp:HyperLink>			
 		</td>
 		<td class="tabs">
-			<asp:HyperLink ID="lnk6" runat="server" NavigateUrl="~/web/buyerscreens/report_awardedbiditemsbyitem.aspx">Reports</asp:HyperLink>			
+			<asp:HyperLink ID="lnk6" runat="server" NavigateUrl="~/web/buyerscreens/report_savingsbybidevent.aspx">Reports</asp:HyperLink>			
 		</td>
 		<td>&nbsp;</td>
 	</tr>

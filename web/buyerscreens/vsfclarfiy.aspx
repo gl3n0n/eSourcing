@@ -235,7 +235,7 @@
                                                                         <asp:SqlDataSource ID="dsBrands" runat="server" 
                                                                                 ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" 
                                                                                 SelectCommand="s3p_EBid_GetAllProductBrands" SelectCommandType="StoredProcedure"
-                                                                            FilterExpression="SubCategoryId = '{0}'">
+                                                                            FilterExpression="Convert(SubCategoryId, 'System.String') = '{0}'">
                                                                             <FilterParameters>
                                                                                 <asp:ControlParameter ControlID="ddlSubCategory" DefaultValue=" " Name="SubCategoryId" PropertyName="SelectedValue" />
                                                                                 <%--<asp:ControlParameter ControlID="ddlSubCategory" DefaultValue=" " Name="SubCategoryId" PropertyName="SelectedValue" />--%>

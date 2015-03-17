@@ -5,6 +5,7 @@ Copyright © 2002 Globe Telecom, Inc. All rights reserved.<br />
 <asp:HyperLink ID="hlTerms" runat="server">Terms of Use</asp:HyperLink>
 - <asp:HyperLink ID="hlPrivacy" runat="server">Privacy Policy</asp:HyperLink><br />
 
+<!--
 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="http://www.globeplatinum.com.ph/" Target="_blank">Globe Platinum</asp:HyperLink>
  | <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="http://www.globehandyphone.com.ph/" Target="_blank">Globe Handyphone</asp:HyperLink>
  | <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="http://www.globe.com.ph/" Target="_blank">myGlobe</asp:HyperLink> 
@@ -14,3 +15,4 @@ Copyright © 2002 Globe Telecom, Inc. All rights reserved.<br />
  | <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="http://www.innove.com.ph/" Target="_blank">Innove</asp:HyperLink> 
  | <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="https://www.dealerportal.com.ph/" Target="_blank">Dealers</asp:HyperLink> 
  | <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="http://www.globekababayan.com.ph/" Target="_blank">Kababayan</asp:HyperLink>
+-->

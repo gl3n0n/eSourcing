@@ -242,10 +242,12 @@ namespace EBid.lib.constant
         // Parent Temp Folder, contains daily temp folder(s)
         public static string FILEPREFIX = ConfigurationManager.AppSettings["FilePrefix"].Trim();
         public static string FILEATTACHMENTSFOLDERNAME = ConfigurationManager.AppSettings["FileAttachmentsFolder"].Trim();
+		public static string FILEATTACHMENTSFOLDERDIR = "F:\\EBDDATA\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\";
         //public static string FILEATTACHMENTSFOLDERDIR = _context.Server.MapPath("~\\web\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\");
         //public static string FILEATTACHMENTSFOLDERDIR = "\\\\10.226.182.28\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\";
-        public static string FILEATTACHMENTSFOLDERDIR = "\\\\10.226.146.190\\EBIDWEB\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\";
+        //public static string FILEATTACHMENTSFOLDERDIR = "\\\\10.226.146.190\\EBIDWEB\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\";
         public static string TEMPDIR = _context.Server.MapPath("~\\" + ConfigurationManager.AppSettings["TempFilesFolder"]);
+	//public static string FILEATTACHMENTSFOLDERDIR = "\\\\10.226.146.190\\EBIDWEB\\" + ConfigurationManager.AppSettings["FileAttachmentsFolder"] + "\\";
         // Daily Temp Folder, temp files are created in this folder
         public static string DAILYTEMPDIR = Constant.TEMPDIR + "\\" +
                             (DateTime.Now.Month < 10 ? "0" + DateTime.Now.Month : DateTime.Now.Month.ToString()) +

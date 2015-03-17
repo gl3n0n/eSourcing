@@ -151,7 +151,7 @@ string connstring = ConfigurationManager.ConnectionStrings["EBidConnectionString
                                                     AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" 
                                                     OnRowCommand="gvTenderDrafts_RowCommand" DataKeyNames="BidRefNo,AsClarified" DataSourceID="dsGetBidTenderDraft">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Tender No." SortExpression="BidRefNo">
+                                                        <asp:TemplateField HeaderText="Tender No." SortExpression="BidTenderNo">
                                                             <HeaderStyle HorizontalAlign="Center" Width="90px" />
                                                             <ItemTemplate>
                                                                 &nbsp;

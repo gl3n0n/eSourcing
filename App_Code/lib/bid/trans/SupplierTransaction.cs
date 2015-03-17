@@ -141,7 +141,7 @@ namespace EBid.lib.bid.trans
                 string Brand, string Service, string Location, string Item)
         {
             string query =
-                "SELECT DISTINCT t1.VendorId, CASE WHEN t1.Accredited = 3 THEN 'OTS - ' +  t1.VendorName ELSE t1.VendorName END AS VendorName " +
+                "SELECT DISTINCT t1.VendorId, CASE WHEN t1.Accredited = 3 THEN 'OTS - ' +  t1.VendorName ELSE t1.VendorName END AS VendorName, t1.VendorName " +
                 "FROM   tblVendors t1 " +
                 "       {0} " +
                "WHERE  ([Accredited] IN " + "(1,2,3)" + ") {1}" +

@@ -312,6 +312,11 @@ public partial class SearchResults : System.Web.UI.Page
                             if (Int32.Parse(usertype) == 1)
                                 url = "web/buyerscreens/auctiondetails.aspx";
                             break;
+			case 6:
+                            lblStatus.Text = "Finished";
+                            if (Int32.Parse(usertype) == 1)
+                                url = "web/buyerscreens/auctiondetails.aspx";
+                            break;
                     }
 
                     lbRefNo.Attributes.Add("onClick", "RedirectToItemDetails('" + url + "','" + refNo + "',1)");

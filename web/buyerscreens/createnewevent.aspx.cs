@@ -201,7 +201,7 @@ public partial class web_buyer_screens_createNewItem : System.Web.UI.Page
         SqlDataReader oReader;
         lstSupplierB.Items.Clear();
 
-        query = "SELECT DISTINCT(t1.VendorId),  CASE   WHEN t2.Accredited = 5 THEN    'Due For Renewal - ' +  t2.VendorName  WHEN t2.Accredited = 4 THEN    'Exempted - ' +  t2.VendorName  WHEN t2.Accredited = 3 THEN    'OTS - ' +  t2.VendorName  ELSE t2.VendorName END AS VendorName,    t2.VendorName + ' ( ' + t4.SupplierTypeDesc + ' - ' + cast((CASE WHEN t2.Composite_Rating_Rate is null THEN 0 ELSE t2.Composite_Rating_Rate END) as varchar(10)) + ' - ' + STR(CASE WHEN t2.Maximum_Exposure_Amount is null THEN 0 ELSE t2.Maximum_Exposure_Amount END) + ' - ' + cast((CASE WHEN t2.Perf_Evaluation_Rate is null THEN 0 ELSE t2.Perf_Evaluation_Rate END) as varchar(10)) + ' )' AS VendorLabel, t2.Accredited FROM tblVSFDetails t1 INNER JOIN tblVendors t2 ON t1.VendorId = t2.VendorId INNER JOIN rfcSupplierType t4 ON t2.Accredited = t4.SupplierTypeId WHERE t1.VSFId = " + VSF.SelectedValue.ToString() +" AND t1.Selected = 1 ORDER BY t2.VendorName";
+        query = "SELECT DISTINCT(t1.VendorId),  CASE   WHEN t2.Accredited = 5 THEN    'Due For Renewal - ' +  t2.VendorName  WHEN t2.Accredited = 4 THEN    'Exempted - ' +  t2.VendorName  WHEN t2.Accredited = 3 THEN    'OTS - ' +  t2.VendorName  ELSE t2.VendorName END AS VendorName,    t2.VendorName + ' ( ' + t4.SupplierTypeDesc + ' - ' + cast((CASE WHEN t2.Composite_Rating_Rate is null THEN 0 ELSE t2.Composite_Rating_Rate END) as varchar(10)) + ' - ' + STR(CASE WHEN t2.Maximum_Exposure_Amount is null THEN 0 ELSE t2.Maximum_Exposure_Amount END) + ' - ' + cast((CASE WHEN t2.Perf_Evaluation_Rate is null THEN 0 ELSE t2.Perf_Evaluation_Rate END) as varchar(10)) + ' )' AS VendorLabel, t2.Accredited, t2.VendorName FROM tblVSFDetails t1 INNER JOIN tblVendors t2 ON t1.VendorId = t2.VendorId INNER JOIN rfcSupplierType t4 ON t2.Accredited = t4.SupplierTypeId WHERE t1.VSFId = " + VSF.SelectedValue.ToString() +" AND t1.Selected = 1 ORDER BY t2.VendorName ASC";
         oReader = SqlHelper.ExecuteReader(connstring, CommandType.Text, query);
         if (oReader.HasRows)
         {
@@ -1246,7 +1246,7 @@ public partial class web_buyer_screens_createNewItem : System.Web.UI.Page
 
                 if (d > Constant.BIDLIMIT_BEFOREAPPROVAL & VSF.SelectedValue == "0" & chkQualifiedSourcing.Checked == false)
                 {
-                    msg = "Total Event Cost is equal or more than 2,000,000 (Php). Please select a VSF.";
+                    msg = "Total Event Cost is equal or more than 4,000,000 (Php). Please select a VSF.";
                     return msg;
                 }
 
@@ -1324,7 +1324,7 @@ public partial class web_buyer_screens_createNewItem : System.Web.UI.Page
 
                 if (d > Constant.BIDLIMIT_BEFOREAPPROVAL & VSF.SelectedValue == "0" & chkQualifiedSourcing.Checked == false)
                 {
-                    msg = "Total Event Cost is equal or more than 2,000,000 (Php). Please select a VSF.";
+                    msg = "Total Event Cost is equal or more than 4,000,000 (Php). Please select a VSF.";
                     return msg;
                 }
 

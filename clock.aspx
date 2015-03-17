@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%;">
 <head runat="server">
     <title></title>
-    <script type= "text/javascript" src="jquery/jquery-1.5.1.js"> </script>
+    <script type= "text/javascript" src="jquery/jquery-1.7.1.min.js"> </script>
     <script type= "text/javascript">
         $(document).ready(function () {
 

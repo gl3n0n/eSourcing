@@ -152,6 +152,7 @@
         var vCategoryId = frmAuction.ddlCategory.options.item(frmAuction.ddlCategory.selectedIndex).value;
         var vSubCategoryId = frmAuction.ddlSubCategory.options.item(frmAuction.ddlSubCategory.selectedIndex).value;
         
+	
         window.open('ProductItems.aspx?cid=' + vCategoryId + "&scid=" + vSubCategoryId + "&st=" + trim(text.value), 'x', 'toolbar=no, menubar=no, width=550; height=500, top=80, left=325, resizable=1, scrollbars=1');
     }
 
@@ -698,8 +699,8 @@
                                                                             <asp:TemplateField>
                                                                                 <HeaderTemplate>
                                                                                     <ItemTemplate>
-                                                                                        <asp:TextBox runat="server" ID="lblIncrementDecrement" Text=""  BorderStyle="None" BackColor="#10659E" 
-                                                                                            Font-Bold="true" ForeColor="#FFFFFF" width="80px" ReadOnly="true"></asp:TextBox>
+                                                                                        <asp:TextBox runat="server" ID="lblIncrementDecrement" Text="Increment/Decrement"  BorderStyle="None" BackColor="#10659E" 
+                                                                                            Font-Bold="true" ForeColor="#FFFFFF" width="100px" ReadOnly="true"></asp:TextBox>
                                                                                     </ItemTemplate>
                                                                                 </HeaderTemplate>
                                                                                 <ItemTemplate>

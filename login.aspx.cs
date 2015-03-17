@@ -109,43 +109,73 @@ public partial class login : System.Web.UI.Page
 		{
             Session[Constant.SESSION_PASSWORD] = password;
 
+            ResetUserLoginCount(username, password);
+                        
             // check if already authenticated
             if (Session[Constant.SESSION_ISUSERAUTHENTICATED].ToString() == "YES")
             {
-                if (GetSessionId() == "")
+                // check if password has expired
+                if (CheckUserPasswordValidity(username, password) == "Expired")
+                // if not, proceed
                 {
-                    UpdateUserLoginStatus(Session[Constant.SESSION_USERID].ToString(), 1, Session.SessionID.ToString());
+                    if (GetSessionId() == "")
+                    {
+                        UpdateUserLoginStatus(Session[Constant.SESSION_USERID].ToString(), 1, Session.SessionID.ToString());
 
-                    Session["SesId"] = GetSessionId();
+                        Session["SesId"] = GetSessionId();
 
-                    RedirectUser(Session[Constant.SESSION_USERNAME].ToString(), int.Parse(Session[Constant.SESSION_USERTYPE].ToString()));
+                        RedirectUser(Session[Constant.SESSION_USERNAME].ToString(), int.Parse(Session[Constant.SESSION_USERTYPE].ToString()));
+                    }
+                    else
+                    {
+
+                        UpdateUserLoginStatus(Session[Constant.SESSION_USERID].ToString(), 1, Session.SessionID.ToString());
+
+                        Session["SesId"] = GetSessionId();
+
+                        RedirectUser(Session[Constant.SESSION_USERNAME].ToString(), int.Parse(Session[Constant.SESSION_USERTYPE].ToString()));
+                        //txtNote.Text = "This user is logged-in to other session. <br>Do you want to force login?";
+                        //lnkForceLogout.Visible = true;
+                        //lnkForceLogoutNo.Visible = true;
+                        //btnLogin.Visible = false;
+                        //btnClear.Visible = false;
+                    }
                 }
+                // if password has expired
                 else
                 {
-		    
-                    UpdateUserLoginStatus(Session[Constant.SESSION_USERID].ToString(), 1, Session.SessionID.ToString());
-
-                    Session["SesId"] = GetSessionId();
-
-                    RedirectUser(Session[Constant.SESSION_USERNAME].ToString(), int.Parse(Session[Constant.SESSION_USERTYPE].ToString()));
-                    //txtNote.Text = "This user is logged-in to other session. <br>Do you want to force login?";
-                    //lnkForceLogout.Visible = true;
-                    //lnkForceLogoutNo.Visible = true;
-                    //btnLogin.Visible = false;
-                    //btnClear.Visible = false;
-                } 
+                    txtNote3.Text = "Password validity has been reached.";
+                    mView.ActiveViewIndex = 2;
+                }
             }
             // if not yet authenticated
             else
-            {                
+            {
                 mView.ActiveViewIndex = 2;
-            }
+            }            
 		}
 		// if not, prompt incorrect username/password
 		else
 		{
-            txtUserName.Text = "";
-			txtNote.Text = "Invalid username or password.";
+
+            //GetUserPassword(username, password);
+            if (CheckUserPassword(username, password) == "INVALID")
+            {
+                UpdateUserLoginCount(username);
+                txtNote.Text = "Invalid Password.";
+            }
+
+            else if (CheckUserPassword(username, password) == "LOCKED")
+            {
+                //txtUserName.Text = "";
+                txtNote.Text = "Account Locked. Contact Administrator.";
+            }
+
+            else if (CheckUserPassword(username, password) == "NONE")
+            {
+                txtUserName.Text = "";
+                txtNote.Text = "Invalid Username.";
+            }
 		}
 	}
 
@@ -279,12 +309,26 @@ public partial class login : System.Web.UI.Page
 
                     // if user is already authenticated, then fill session variables
                     if (Session[Constant.SESSION_ISUSERAUTHENTICATED].ToString() == "YES")
-                    {                        
-                        Session[Constant.SESSION_USERID] = ds.Tables[0].Rows[0]["UserId"].ToString();
-                        Session[Constant.SESSION_USERNAME] = username;
-                        Session[Constant.SESSION_USERTYPE] = ds.Tables[0].Rows[0]["UserType"].ToString();
-                        Session[Constant.SESSION_USEREMAIL] = ds.Tables[0].Rows[0]["UserEmail"].ToString();
-                        Session[Constant.SESSION_USERFULLNAME] = ds.Tables[0].Rows[0]["UserFullName"].ToString();
+                    {   
+                        // check if password has expired
+                        if (CheckUserPasswordValidity(username, password) == "Expired")
+                        // if not, proceed
+                        {
+                            Session[Constant.SESSION_USERID] = ds.Tables[0].Rows[0]["UserId"].ToString();
+                            Session[Constant.SESSION_USERNAME] = username;
+                            Session[Constant.SESSION_USERTYPE] = ds.Tables[0].Rows[0]["UserType"].ToString();
+                            Session[Constant.SESSION_USEREMAIL] = ds.Tables[0].Rows[0]["UserEmail"].ToString();
+                            Session[Constant.SESSION_USERFULLNAME] = ds.Tables[0].Rows[0]["UserFullName"].ToString();
+                        }
+                        // if password has expired
+                        else
+                        {
+                            ViewState[Constant.SESSION_USERID] = ds.Tables[0].Rows[0]["UserId"].ToString();
+                            ViewState[Constant.SESSION_USERNAME] = username;
+                            ViewState[Constant.SESSION_USERTYPE] = ds.Tables[0].Rows[0]["UserType"].ToString();
+                            ViewState[Constant.SESSION_USEREMAIL] = ds.Tables[0].Rows[0]["UserEmail"].ToString();
+                            ViewState[Constant.SESSION_USERFULLNAME] = ds.Tables[0].Rows[0]["UserFullName"].ToString();
+                        }
                     }
                     // if not, do not put anything yet.. force user to change his password
                     else
@@ -413,7 +457,7 @@ public partial class login : System.Web.UI.Page
 				
 		sb.Append("<tr><td align='center'><h3>Password Request</h3></td></tr>");
 		sb.Append("<tr><td height='100%' valign='top'><p>");
-			sb.Append("Your password is <b>" + EncryptionHelper.Decrypt(pPassword) + "</b>.<br />");
+			sb.Append("Your password is <b>" + EncryptionHelper.Decrypt(pPassword) + "</b><br />");
 			sb.Append("<font color='red'>NOTE: Password is case sensitive.</font><br />");
 		sb.Append("</p></td></tr>");
 
@@ -453,5 +497,51 @@ public partial class login : System.Web.UI.Page
     {
         FormsAuthenticationHelper.SignOut();
         Response.Redirect("login.aspx");
+    }
+
+    private string CheckUserPassword(string username, string password)
+    {
+        SqlParameter[] sqlparams = new SqlParameter[2];
+        sqlparams[0] = new SqlParameter("@Username", SqlDbType.NVarChar);
+        sqlparams[0].Value = username.Replace("'", "''");
+        sqlparams[1] = new SqlParameter("@Password", SqlDbType.NVarChar);
+        sqlparams[1].Value = password.Replace("'", "''");
+
+        String PasswordValid = (string)SqlHelper.ExecuteScalar(connstring, CommandType.StoredProcedure, "sp_GetUserPassword", sqlparams);
+
+        return PasswordValid;        
+    }
+
+    private void UpdateUserLoginCount(string username)
+    {
+        SqlParameter[] sqlparams = new SqlParameter[1];
+        sqlparams[0] = new SqlParameter("@Username", SqlDbType.NVarChar);
+        sqlparams[0].Value = username.Replace("'", "''");
+
+        SqlHelper.ExecuteNonQuery(connstring, CommandType.StoredProcedure, "sp_UpdateUserLoginCount", sqlparams);
+    }
+
+    private void ResetUserLoginCount(string username, string password)
+    {
+        SqlParameter[] sqlparams = new SqlParameter[2];
+        sqlparams[0] = new SqlParameter("@Username", SqlDbType.NVarChar);
+        sqlparams[0].Value = username.Replace("'", "''");
+        sqlparams[1] = new SqlParameter("@Password", SqlDbType.NVarChar);
+        sqlparams[1].Value = password.Replace("'", "''");
+
+        SqlHelper.ExecuteNonQuery(connstring, CommandType.StoredProcedure, "sp_ResetUserLoginCount", sqlparams);
+    }
+
+    private string CheckUserPasswordValidity(string username, string password)
+    {
+        SqlParameter[] sqlparams = new SqlParameter[2];
+        sqlparams[0] = new SqlParameter("@Username", SqlDbType.NVarChar);
+        sqlparams[0].Value = username.Replace("'", "''");
+        sqlparams[1] = new SqlParameter("@Password", SqlDbType.NVarChar);
+        sqlparams[1].Value = password.Replace("'", "''");
+
+        String PasswordValidity = (string)SqlHelper.ExecuteScalar(connstring, CommandType.StoredProcedure, "sp_GetUserPasswordValidity", sqlparams);
+
+        return PasswordValidity;
     }
 }

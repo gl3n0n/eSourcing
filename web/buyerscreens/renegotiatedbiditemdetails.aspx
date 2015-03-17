@@ -138,7 +138,8 @@
                                                         --%>
                                                         <uc2:biditemdetails ID="ctrlBidItemDetails" runat="server" />
                                                     </p>
-                                                    <asp:Panel ID="pnlFileUpload" runat="server" Height="50px" Width="100%" Visible="false">
+													<p>
+                                                    <asp:Panel ID="pnlFileUpload" runat="server" Width="100%" Visible="false">
                                                        <asp:GridView ID="gvFileAttachment" runat="server" CssClass="itemDetails_1" AutoGenerateColumns="false" OnRowCommand="gvFileAttachment_RowCommand" ShowFooter="true">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="&nbsp;File Attachment">
@@ -167,6 +168,7 @@
                                                             </SelectParameters>
                                                        </asp:SqlDataSource>
                                                     </asp:Panel>
+													</p>
                                                     <p>
                                                         <asp:GridView ID="gvBidItemTenders" runat="server" Width="100%" AutoGenerateColumns="False" SkinID="AuctionedItems" DataKeyNames="BidTenderNo" DataSourceID="dsBidItemTenders" OnRowCommand="gvBidItemTenders_RowCommand"
                                                             OnSelectedIndexChanged="gvBidItemTenders_SelectedIndexChanged" OnDataBound="gvBidItemTenders_DataBound">
@@ -242,7 +244,7 @@
                                                     <center>
                                                         <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="red" Font-Size="11px"></asp:Label></center>
                                                     <p>
-                                                        <asp:DetailsView ID="dvTenderDetails" runat="server" Width="100%" AutoGenerateRows="False" DataKeyNames="BidTenderNo" DataSourceID="dsBidItemTenders" SkinID="BidDetails" visible="false">
+                                                        <asp:DetailsView ID="dvTenderDetails" runat="server" Width="100%" AutoGenerateRows="False" DataKeyNames="BidTenderNo" DataSourceID="dsBidItemTenders" visible="false">
                                                             <HeaderTemplate>
                                                                 &nbsp;Bid Tender Details
                                                             </HeaderTemplate>
@@ -289,11 +291,14 @@
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Fields>
-                                                        </asp:DetailsView>
-                                                        <asp:Panel ID="pnlTenderAttachments" runat="server" Height="50px" Width="100%" Visible="false">
+                                                        </asp:DetailsView>                                                        
+                                                    </p>
+													<br />
+													<p>
+														<asp:Panel ID="pnlTenderAttachments" runat="server" Width="100%" Visible="false">
                                                             <uc5:bidtender_attachments ID="Bidtender_attachments" runat="server" />
                                                         </asp:Panel>
-                                                    </p>
+													</p>
                                                     <br />
                                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="actions">
                                                         <tr>

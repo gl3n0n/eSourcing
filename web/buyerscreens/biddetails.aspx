@@ -1,4 +1,4 @@
-<%@ page language="c#" inherits="EBid.web.boc.biddetails, App_Web_biddetails.aspx.1829e19c" maintainscrollpositiononpostback="true" theme="default" %>
+<%@ page language="c#" inherits="EBid.web.boc.biddetails" codefile="biddetails.aspx.cs" maintainscrollpositiononpostback="true" theme="default" %>
 
 <%@ Register TagPrefix="EBid" TagName="LeftNav" Src="~/WEB/usercontrol/Buyer/LeftNav.ascx" %>
 <%@ Register TagPrefix="EBid" TagName="TopNavBids" Src="~/WEB/usercontrol/Buyer/TopNavBids.ascx" %>

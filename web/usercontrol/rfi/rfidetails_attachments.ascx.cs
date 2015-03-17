@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using EBid.lib;
 using EBid.lib.constant;
 //using ICSharpCode.SharpZipLib.Zip;
+using Ionic.Zip;
 
 public partial class web_usercontrol_rfi_rfidetails_attachments : System.Web.UI.UserControl
 {
@@ -48,23 +49,23 @@ public partial class web_usercontrol_rfi_rfidetails_attachments : System.Web.UI.
         }
     }
 
-    protected void lnkDownloadAll_Click(object sender, EventArgs e)
-    {
-        if (Session["ViewOption"] != null)
-        {
-            if (Session["ViewOption"] == "AsBuyer")
-            {
-                string path = Constant.FILEATTACHMENTSFOLDERDIR;
-                ZipAllFiles(path);
-            }
-            else if (Session["ViewOption"] == "AsVendor")
-            {
-                string path = Constant.FILEATTACHMENTSFOLDERDIR + Session["TVendorId"].ToString() + "\\"
-                                + Session["RfiRefNo"].ToString() + "\\";
-                ZipAllFiles(path);
-            }
-        }
-    }
+    //protected void lnkDownloadAll_Click(object sender, EventArgs e)
+    //{
+    //    if (Session["ViewOption"] != null)
+    //    {
+    //        if (Session["ViewOption"] == "AsBuyer")
+    //        {
+    //            string path = Constant.FILEATTACHMENTSFOLDERDIR;
+    //            ZipAllFiles(path);
+    //        }
+    //        else if (Session["ViewOption"] == "AsVendor")
+    //        {
+    //            string path = Constant.FILEATTACHMENTSFOLDERDIR + Session["TVendorId"].ToString() + "\\"
+    //                            + Session["RfiRefNo"].ToString() + "\\";
+    //            ZipAllFiles(path);
+    //        }
+    //    }
+    //}
 
     ///<summary>
     /// By: Edrick Tan 11/21/2012
@@ -110,4 +111,45 @@ public partial class web_usercontrol_rfi_rfidetails_attachments : System.Web.UI.
         //if (File.Exists(tempFileName))
         //    File.Delete(tempFileName);
     }
+
+    protected void lnkDownloadAll_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.BufferOutput = false;
+        Response.ContentType = "application/zip";
+        Response.AddHeader("content-disposition", "attachment; filename=RfiRefNo_" + Session["RfiRefNo"].ToString()+ ".zip"); // File name of a zip file
+
+        using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
+        {
+            string fileNameActual = String.Empty;
+            string fileNameOrig = String.Empty;
+            string vendorName = String.Empty;
+            string path2tmp = String.Empty;
+            foreach (GridViewRow row1 in gvFileAttachments.Rows)
+            {
+                if (row1.FindControl("lnkDownload") != null && row1.FindControl("txtFileAttachment") != null)
+                {
+                    //vendorName = Session["TVendorId"].ToString();
+                    fileNameActual = (row1.FindControl("lnkDownload") as LinkButton).Text;
+                    path2tmp = (row1.FindControl("txtFileAttachment") as HiddenField).Value.ToString();
+                    string[] args = path2tmp.Split(new char[] { '|' });
+                    string path = Constant.FILEATTACHMENTSFOLDERDIR;
+                    string[] folder = args[0].Split(new char[] { '_' });
+                    //path = path + folder[1].ToString() + '\\' + folder[2].ToString() + '\\';
+                    path = path + '\\';
+                    fileNameActual = path + args[0];
+                    //fileNameOrig = folder[1].ToString() + '\\' + args[1];
+                    fileNameOrig =  args[1];
+                    if (File.Exists(fileNameActual))
+                    {
+                        zip.AddFile(fileNameActual).FileName = fileNameOrig;
+                    }
+                }
+            }
+            zip.Save(Response.OutputStream);
+        }
+
+        Response.Close();
+    }
+
 }

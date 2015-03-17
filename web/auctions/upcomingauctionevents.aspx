@@ -165,11 +165,12 @@ string connstring = ConfigurationManager.ConnectionStrings["EBidConnectionString
 														&nbsp;<asp:Label ID="lblEndDate" runat="server" Text='<%# Eval("AuctionEndDateTime", "{0:D}<br />{0:T}") %>'></asp:Label>												
 													</ItemTemplate>
 												</asp:TemplateField>
-												<asp:TemplateField HeaderText="&#160;Duration&#160;" SortExpression="Duration">
+												<asp:TemplateField HeaderText="&#160;Duration&#160;" SortExpression="DurationDifference">
 													<HeaderStyle HorizontalAlign="Center" />
 													<ItemStyle Width="90px" HorizontalAlign="Center" />
 													<ItemTemplate>
 														<asp:Label ID="lblDuration" runat="server" Text='<%# Eval("Duration") %>'></asp:Label>
+														<asp:HiddenField ID="hdnDuration" runat="server" Value='<%# Bind("DurationDifference") %>' />
 													</ItemTemplate>
 												</asp:TemplateField>
 												<asp:TemplateField>

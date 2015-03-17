@@ -7,10 +7,11 @@
             <asp:TemplateField HeaderText="&nbsp;File Attachments">
                 <ItemStyle BackColor="white" />
                 <ItemTemplate>
-                    <asp:CheckBox ID="cbFile" runat="server" />
+                    <!--<asp:CheckBox ID="cbFile" runat="server" />-->
                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/web/images/paperclip.gif" Width="15px" Height="15px" 
                         AlternateText="Click to download" CausesValidation="false" CommandArgument='<%# Bind("FileAttachment") %>' CommandName="Download" />
                     <asp:LinkButton ID="lnkDownload" runat="server" ToolTip="Click to download" CausesValidation="false" Text='<%# Bind("OriginalFileName") %>' CommandArgument='<%# Bind("FileAttachment") %>' CommandName="Download" Width="95%"></asp:LinkButton>
+                    <asp:HiddenField runat="server" ID="txtFileAttachment" value='<%# Bind("FileAttachment") %>'></asp:HiddenField>
                 </ItemTemplate>                
             </asp:TemplateField>
         </Columns>
@@ -22,5 +23,5 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:LinkButton ID="lnkDownloadAll" runat="server" Width="160px" 
-        onclick="lnkDownloadAll_Click">Download All Selected</asp:LinkButton>
+        onclick="lnkDownloadAll_Click">Download All</asp:LinkButton>
 </div>

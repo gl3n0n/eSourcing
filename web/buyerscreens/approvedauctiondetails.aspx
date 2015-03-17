@@ -1,4 +1,4 @@
-<%@ page language="C#" autoeventwireup="true" inherits="web_buyerscreens_ApprovedAuctionDetails, App_Web_approvedauctiondetails.aspx.1829e19c" maintainscrollpositiononpostback="true" theme="default" %>
+<%@ page language="C#" autoeventwireup="true" inherits="web_buyerscreens_ApprovedAuctionDetails" codefile="approvedauctiondetails.aspx.cs" maintainscrollpositiononpostback="true" theme="default" %>
 
 <%@ Register Src="../usercontrol/auctionvendor/auctiondetail.ascx" TagName="auctiondetail" TagPrefix="uc3" %>
 <%@ Register Src="../usercontrol/auctionvendor/auctionitems.ascx" TagName="auctionitems" TagPrefix="uc2" %>

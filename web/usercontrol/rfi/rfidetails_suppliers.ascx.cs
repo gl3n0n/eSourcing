@@ -19,7 +19,7 @@ public partial class web_usercontrol_rfi_rfidetails_suppliers : System.Web.UI.Us
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+		gvInvitedSuppliers.DataBind();
     }
 
     public void gvInvitedSuppliers_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -67,8 +67,8 @@ public partial class web_usercontrol_rfi_rfidetails_suppliers : System.Web.UI.Us
         }
     }
 
-    protected void lnkDownloadAll_Click(object sender, EventArgs e)
-    {
+    //protected void lnkDownloadAll_Click(object sender, EventArgs e)
+    //{
         //string path = Constant.FILEATTACHMENTSFOLDERDIR;
         //byte[] buffer = new byte[4096];
         //var tempFileName = Server.MapPath(@"temp/" + Guid.NewGuid().ToString() + ".zip");
@@ -108,5 +108,54 @@ public partial class web_usercontrol_rfi_rfidetails_suppliers : System.Web.UI.Us
         //    //Deletes the Temp File
         //    if (File.Exists(tempFileName))
         //        File.Delete(tempFileName);
+    //}
+
+    protected void lnkDownloadAll_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.BufferOutput = false;
+        Response.ContentType = "application/zip";
+        Response.AddHeader("content-disposition", "attachment; filename=RfiRefNo_" + Session["RfiRefNo"].ToString() + ".zip"); // File name of a zip file
+
+        using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
+        {
+            string fileNameActual = String.Empty;
+            string fileNameOrig = String.Empty;
+            string vendorName = String.Empty;
+            string path2tmp = String.Empty;
+			int i = 0;
+            foreach (GridViewRow row1 in gvInvitedSuppliers.Rows)
+            {
+                if (row1.FindControl("lnkDownload") != null && row1.FindControl("txtFileAttachment") != null)
+                {
+                    vendorName = (row1.FindControl("txtVendorNme") as HiddenField).Value.ToString().Replace("'","").Replace(","," ").Replace("."," ");
+                    fileNameActual = (row1.FindControl("lnkDownload") as LinkButton).Text;
+                    path2tmp = (row1.FindControl("txtFileAttachment") as HiddenField).Value.ToString();
+                    string[] args = path2tmp.Split(new char[] { '|' });
+                    string path = Constant.FILEATTACHMENTSFOLDERDIR;
+                    string[] folder = args[0].Split(new char[] { '_' });
+                    //path = path + folder[1].ToString() + '\\' + folder[2].ToString() + '\\';
+                    //fileNameActual = path + args[0];
+                    ////fileNameOrig = folder[1].ToString() + '\\' + args[1];
+                    //fileNameOrig = vendorName + '\\' + args[1];
+                    //if (File.Exists(fileNameActual))
+                    //{
+                    //    zip.AddFile(fileNameActual).FileName = fileNameOrig;
+                    //}
+					path = path + folder[1].ToString() + '\\' + folder[2].ToString() + '\\';
+                    fileNameActual = path + args[0];
+                    //fileNameOrig = folder[1].ToString() + '\\' + args[1];
+                    fileNameOrig = i.ToString() + "_" + vendorName + "_" + args[1];
+                    if (File.Exists(fileNameActual))
+                    {
+                        zip.AddFile(fileNameActual).FileName = fileNameOrig;
+                    }
+                    i++;
+                }
+            }
+            zip.Save(Response.OutputStream);
+        }
+
+        Response.Close();
     }
 }

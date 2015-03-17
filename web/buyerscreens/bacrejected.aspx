@@ -69,7 +69,7 @@
                                                     </p>
                                                     <asp:GridView ID="gvBids" runat="server" SkinID="BidEvents" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnRowCommand="gvBids_RowCommand" DataKeyNames="BidRefNo" DataSourceID="dsAproved">
                                                         <Columns>
-                                                            <asp:TemplateField HeaderText="Reference No." InsertVisible="False" SortExpression="BacRefNo">
+                                                            <asp:TemplateField HeaderText="Reference No." InsertVisible="False" SortExpression="BidRefNo">
                                                                 <HeaderStyle HorizontalAlign="Center" Width="90px" />
                                                                 <ItemTemplate>
                                                                     &nbsp;<asp:LinkButton ID="lnkRefNo" runat="server" Text='<%# Convert.ToInt32(Eval("BidRefNo"))>0 ? Eval("BidRefNo")+" (Bid)" : Eval("BidRefNo").ToString().Replace("-","")+" (Auc)" %>' CommandArgument='<%# Bind("BACBID") %>' CommandName="Details"></asp:LinkButton>
