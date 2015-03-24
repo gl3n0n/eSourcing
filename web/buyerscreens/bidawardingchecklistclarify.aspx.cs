@@ -233,6 +233,40 @@ public partial class web_buyerscreens_bidawardingchecklistclarify : System.Web.U
             lblLoad.Value = "true";
         }
 
+
+
+        if (Session["BuyerBidForBac"] != null)
+        {
+            string RefNo1 = Session["BuyerBidForBac"].ToString();
+            if (Convert.ToInt32(RefNo1.ToString()) > 0)
+            {
+                string sCommandx = "SELECT 1 FROM tblBidItems WHERE BidRefNo=" + RefNo1 + "";
+                string connstringx = ConfigurationManager.ConnectionStrings["EBidConnectionString"].ConnectionString;
+                SqlDataReader oReaderx = SqlHelper.ExecuteReader(connstringx, CommandType.Text, sCommandx);
+                if (oReaderx.HasRows)
+                {
+                    LinkToBid1.Text = "View Bid Details";//Session["BuyerBidForBac"].ToString();
+                    //LinkToBid1.NavigateUrl = "/web/buyerscreens/bideventdetails_view.aspx?brn=" + RefNo1.ToString();
+                    LinkToBid1.NavigateUrl = "javascript://";
+                    LinkToBid1.Attributes.Add("onclick", "window.open('/web/buyerscreens/bideventdetails_view.aspx?brn=' + " + RefNo1.ToString() + " , 'x', 'toolbar=no, menubar=no, width=800; height=600, top=80, left=80, resizable=yes, scrollbars=yes');");
+                }
+            }
+            else
+            {
+                int AucRefNo1 = Math.Abs(Convert.ToInt32(RefNo1.ToString()));
+                string sCommandx = "SELECT 1 FROM tblAuctionItems WHERE AuctionRefNo=" + AucRefNo1 + "";
+                string connstringx = ConfigurationManager.ConnectionStrings["EBidConnectionString"].ConnectionString;
+                SqlDataReader oReaderx = SqlHelper.ExecuteReader(connstringx, CommandType.Text, sCommandx);
+                if (oReaderx.HasRows)
+                {
+                    LinkToBid1.Text = "View Auction Details";//Session["BuyerBidForBac"].ToString();
+                    //LinkToBid1.NavigateUrl = "/web/buyerscreens/auctiondetails_view.aspx?arn=" + AucRefNo1.ToString();
+                    LinkToBid1.NavigateUrl = "javascript://";
+                    LinkToBid1.Attributes.Add("onclick", "window.open('/web/buyerscreens/auctiondetails_view.aspx?arn=' + " + AucRefNo1.ToString() + " , 'x', 'toolbar=no, menubar=no, width=800; height=600, top=80, left=80, resizable=yes, scrollbars=yes');");
+                }
+            }
+        }
+
         CreateCriteriaRow();
 
         // javascript selected indices

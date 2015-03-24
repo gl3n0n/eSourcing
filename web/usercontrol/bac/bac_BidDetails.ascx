@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bac_BidDetails.ascx.cs" Inherits="web_usercontrol_bac_BidDetails" %>
+<a href="/login.aspx">Logout</a><%@ Control Language="C#" AutoEventWireup="true" CodeFile="bac_BidDetails.ascx.cs" Inherits="web_usercontrol_bac_BidDetails" %>
 <table width="100%" border="1" cellpadding="0" cellspacing="0" rules="all" class="itemDetails" id="Biddetails_details1_dvEventDetails" style="border-color:#71A9D2; font-family: Arial; font-size: 11px; border-collapse: collapse; background-color: rgb(219, 234, 245); height:100%">
 	<tbody>
 		<tr>
@@ -18,6 +18,9 @@
 					  </asp:label>
 					  </ItemTemplate>
 					  </asp:DataList>
+
+                                                                                <br />
+                                                                                <asp:HyperLink ID="LinkToBid1" runat="server" ></asp:HyperLink>
 
 				<input type="hidden" id="lblTotalAll" name="lblTotalAll" runat="server" />
 				<input type="hidden" id="txtClarify" name="txtClarify" runat="server" />

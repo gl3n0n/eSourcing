@@ -10,7 +10,7 @@
     <title id="PageTitle" runat="server"></title>
     <meta http-equiv="Content-Language" content="en-us" />
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-    <script type="text/javascript" src="../../jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../../jquery/jquery-1.5.1.js"></script>
     <script type="text/javascript" src="../../jquery/ui/jquery.ui.core.js"></script>
     <script type="text/javascript" src="../../jquery/ui/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="../../jquery/ui/jquery.ui.mouse.js"></script>
@@ -1102,6 +1102,8 @@
 																					OnDataBound="BuyerBidForBac_DataBound" onload="Page_LoadComplete" Font-Bold="True" >
 																				</asp:dropdownlist>--%>
                                                                                 <asp:Label ID="lblBuyerBidForBac" runat="server" style="text-align:center" onload="BuyerBidForBac_DataBound" Font-Bold="True" Font-Size="18px"></asp:Label>
+                                                                                <br />
+                                                                                <asp:HyperLink ID="LinkToBid1" runat="server"></asp:HyperLink>
                                                                                 <asp:HiddenField runat="server" ID="BuyerBidForBac">
                                                                                 </asp:HiddenField>
 

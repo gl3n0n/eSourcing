@@ -1,0 +1,143 @@
+<a href="/login.aspx">Logout</a><%@ page language="C#" autoeventwireup="true"  CodeFile="auctiondetails_view.aspx.cs"  inherits="web_buyerscreens_auctiondetails_view" theme="default" %>
+
+<%@ Register Src="../usercontrol/auctionvendor/auctiondetail.ascx" TagName="auctiondetail" TagPrefix="uc3" %>
+<%@ Register Src="../usercontrol/auctionvendor/auctionitems.ascx" TagName="auctionitems" TagPrefix="uc2" %>
+<%@ Register Src="../usercontrol/AuctionVendor/auctionattachments.ascx" TagName="auctionattachments" TagPrefix="uc1" %>
+<%@ Register TagPrefix="EBid" TagName="TopNavAuction" Src="~/WEB/usercontrol/Login_TopNav.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="TopNav_Auctions" Src="~/web/usercontrol/Login_TopNav.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="LeftNavAuctions1" Src="~/web/usercontrol/Buyer/LeftNavAuctions1.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="LeftNavNotifications" Src="~/web/usercontrol/Buyer/LeftNavNotifications.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="GlobalLinksNav" Src="~/web/usercontrol/GlobalLinksNav.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="Footer" Src="~/web/usercontrol/Footer.ascx" %>
+<%@ Register TagPrefix="EBid" TagName="CommentBox" Src="~/web/usercontrol/CommentBox.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title id="PageTitle" runat="server"></title>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style_buyer.css" />
+    <script type="text/javascript" src="../include/util.js"></script>
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <div align="left">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="page">
+                <tr>
+                    <td height="100%" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" height="200">
+                            <tr>
+                                <td id="relatedInfo">
+                                    <h2>
+                                        &nbsp;</h2>
+                                    <div align="left">
+                                    </div>
+                                    <h2>
+                                        &nbsp;</h2>
+                                    <p>
+                                        &nbsp;</p>
+                                </td>
+                                <td id="content">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="page0">
+                                        <tr>
+                                            <td valign="top">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td id="content0">
+                                                            <h1>
+                                                                <br />
+                                                                Auction Event Details</h1>
+                                                            <uc3:auctiondetail ID="Auctiondetail1" runat="server" />
+                                                            <uc2:auctionitems ID="Auctionitems1" runat="server" />
+                                                            <br />
+                                                            <uc1:auctionattachments ID="Auctionattachments1" runat="server" />
+                                                            <br />
+                                                            <asp:GridView runat="server" ID="gvSuppliers" AutoGenerateColumns="False" SkinID="AuctionedItems" AllowSorting="True" DataSourceID="dsAuctionParticipants" DataKeyNames="ParticipantId,UserName,Ticket,Alias,VendorName,VendorEmail,MobileNo">
+                                                                <HeaderStyle ForeColor="White" HorizontalAlign="Center" Height="20px" />
+                                                                <RowStyle BackColor="White" />
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="&#160;Supplier&#160;" SortExpression="VendorName">
+                                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                                        <ItemTemplate>
+                                                                            &nbsp;<asp:Label ID="Label4" runat="server" Text='<%# Bind("VendorName") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="&#160;Alias&#160;" SortExpression="Alias">
+                                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                                        <ItemStyle HorizontalAlign="Center" />
+                                                                        <ItemTemplate>
+                                                                            &nbsp;<asp:Label ID="Label3" runat="server" Text='<%# Bind("Alias") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="&#160;Email Address&#160;" SortExpression="VendorEmail">
+                                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                                        <ItemStyle HorizontalAlign="Center" />
+                                                                        <ItemTemplate>
+                                                                            &nbsp;<asp:Label ID="Label2" runat="server" Text='<%# Bind("VendorEmail") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="&#160;Mobile No.&#160;" SortExpression="VendorEmail">
+                                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                                        <ItemStyle HorizontalAlign="Center" />
+                                                                        <ItemTemplate>
+                                                                            &nbsp;<asp:Label ID="lnlmobileno" runat="server" Text='<%# Bind("MobileNo") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="&#160;No. of Emails Sent&#160;" SortExpression="EmailSent">
+                                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                                        <ItemStyle Width="100px" HorizontalAlign="Center" />
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("EmailSent") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                            <asp:SqlDataSource ID="dsAuctionParticipants" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>" SelectCommand="sp_GetAuctionParticipants" SelectCommandType="StoredProcedure">
+                                                                <SelectParameters>
+                                                                    <asp:SessionParameter DefaultValue="0" Name="AuctionRefNo" SessionField="AuctionRefNo" Type="Int32" />
+                                                                </SelectParameters>
+                                                            </asp:SqlDataSource>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <asp:Label ID="lblMessage" runat="server" Text="" Font-Size="11px" ForeColor="red"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="actions">
+                                                    <tr>
+                                                        <td>                                                            
+                                                            <asp:LinkButton runat="server" ID="btnOK" OnClick="btnOK_Click" Width="100px" Visible="false">Back</asp:LinkButton>                                                             
+                                                            <asp:LinkButton runat="server" ID="btnClose" OnClientClick="window.close()">Close</asp:LinkButton>                                                      
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
