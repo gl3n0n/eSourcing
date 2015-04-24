@@ -248,7 +248,7 @@ public partial class web_buyerscreens_bidawardingchecklistclarify : System.Web.U
                     LinkToBid1.Text = "View Bid Details";//Session["BuyerBidForBac"].ToString();
                     //LinkToBid1.NavigateUrl = "/web/buyerscreens/bideventdetails_view.aspx?brn=" + RefNo1.ToString();
                     LinkToBid1.NavigateUrl = "javascript://";
-                    LinkToBid1.Attributes.Add("onclick", "window.open('/web/buyerscreens/bideventdetails_view.aspx?brn=' + " + RefNo1.ToString() + " , 'x', 'toolbar=no, menubar=no, width=800; height=600, top=80, left=80, resizable=yes, scrollbars=yes');");
+                    LinkToBid1.Attributes.Add("onclick", "window.open('../buyerscreens/bideventdetails_view.aspx?brn=' + " + RefNo1.ToString() + " , 'x', 'toolbar=no, menubar=no, width=800; height=600, top=80, left=80, resizable=yes, scrollbars=yes');");
                 }
             }
             else
