@@ -1432,7 +1432,7 @@
 																									DataValueField="ID" ondatabound="cbSupplyPosition_DataBound">
 																								</asp:DropDownList>
 																								<asp:SqlDataSource ID="dsSupplyPosition" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																									SelectCommand="SELECT * FROM rfcSupplyPosition ORDER BY ID" >
+																									SelectCommand="SELECT * FROM rfcSupplyPosition WHERE status = 1 ORDER BY ID" >
 																								</asp:SqlDataSource>
 																							</td></tr>
 																							<tr><td class="style2">
@@ -1469,7 +1469,7 @@
 																									DataValueField="ID" ondatabound="cbSourcingStrategy_DataBound">
 																								</asp:DropDownList>
 																								<asp:SqlDataSource ID="dsSourcingStrategy" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																									SelectCommand="SELECT * FROM rfcSourcingStrategy ORDER BY ID" >
+																									SelectCommand="SELECT * FROM rfcSourcingStrategy WHERE status = 1 ORDER BY ID" >
 																								</asp:SqlDataSource>
 																							</td></tr>
 																							<tr><td>
@@ -1544,7 +1544,7 @@
 																									DataValueField="ID" ondatabound="cbTypeOfPurchase_DataBound" >
 																								</asp:DropDownList>
 																								<asp:SqlDataSource ID="dsTypeOfPurchase" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																									SelectCommand="SELECT * FROM rfcTypeOfPurchase ORDER BY ID" >
+																									SelectCommand="SELECT * FROM rfcTypeOfPurchase WHERE status = 1 ORDER BY ID" >
 																								</asp:SqlDataSource>
 																							</td></tr>
 																							<tr><td>
@@ -1581,7 +1581,7 @@
 																									ondatabound="cbPaymentTerms_DataBound">
 																								</asp:DropDownList>
 																								<asp:SqlDataSource ID="dsPaymentTerms" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																									SelectCommand="SELECT * FROM rfcPaymentTerms ORDER BY ID" >
+																									SelectCommand="SELECT * FROM rfcPaymentTerms WHERE status = 1 ORDER BY ID" >
 																								</asp:SqlDataSource>
 																							</td>
 																							</tr>
@@ -2988,7 +2988,7 @@
 																						DataValueField="ID" ondatabound="cbNatureOfSavings_DataBound">
 																					</asp:DropDownList>
 																					<asp:SqlDataSource ID="dsNatureOfSavings" runat="server" ConnectionString="<%$ ConnectionStrings:EBidConnectionString %>"
-																						SelectCommand="SELECT * FROM rfcNatureOfSavings ORDER BY ID" >
+																						SelectCommand="SELECT * FROM rfcNatureOfSavings WHERE status = 1 ORDER BY ID" >
 																					</asp:SqlDataSource>
 																				</td></tr>
 																				<tr><td class="style2">
